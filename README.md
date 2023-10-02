@@ -1,2 +1,2 @@
 # JavaScript_Intermediate_Babalwa
-This is for Summary and Reflections on the material covered
+This is for Summary and Reflections on the material covered in JavaScript Intermediate
