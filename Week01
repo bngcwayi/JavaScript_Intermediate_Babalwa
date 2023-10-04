@@ -35,8 +35,6 @@ Closing a popup
  
 Scrolling and resizing
 	There are methods to move/resize a window
- 
-
 
 Scrolling a window
 	Scrolling on a window can be done by pixel whether right or down, using coordinates 
@@ -97,6 +95,7 @@ o	Event to Wait For: To know when the iframe is ready to be used, you need to wa
 o	Challenge: However, this event only happens when everything inside the iframe, including all the pictures, videos, and text, has finished loading. This might take a while, especially for complex web pages.
 o	Early Detection: If you want to start doing something with the iframe's content before it's fully loaded (like opening the book before you finish reading it), you can keep checking it at regular intervals using something called setInterval. It's like peeking inside the book every few seconds to see if you can start reading, even if you haven't reached the last page.
 o	In simple terms, the message here is: Don't try to work with the content of an iframe until it's fully loaded, which is signaled by the iframe.onload event. If you're impatient and want to do something with it before that, you can keep checking it using setInterval, but be careful not to do anything too early, or it might not work as expected.
+
 Collection: window.frames
 o	Getting Window Objects for Iframes: When you have an <iframe> on a webpage, you can get access to its window (like its own little world) in a couple of ways:
 o	By Number: You can use window.frames[0] to get the window object for the first <iframe> in the webpage. It's like saying, "Give me the first little world inside this webpage."
@@ -132,6 +131,7 @@ o	origin: This tells you where the message came from (which website).
 o	source: This gives you a way to send a message back to the sender if you need to reply.
 o	Using it: To make this work, you set up the onmessage handler using a function called addEventListener. You can't just use window.onmessage, it doesn't work that way.
 o	In simple terms, postMessage is like a secret code that lets web pages from different places chat with each other, but they have to agree to talk, and they can only send messages to the right address. This keeps things safe for users while allowing different web pages to cooperate.
+
 DAY 2 SUMMARY
 o	To call methods and access the content of another window, we should first have a reference to it.
 o	For popups we have these references:
@@ -166,7 +166,7 @@ Introduction to Clickjacking
 	The attack only affects mouse actions (or similar, like taps on mobile).
 OLD SCHOOL DEFENSES [WEAK]
 	The oldest defence is a bit of JavaScript which forbids opening the page in a frame (so-called “framebusting”).
-	 
+
 	Framebusting in JavaScript, in simple terms, is a technique used to prevent a webpage from being displayed within a frame or iframe on another website. It's a security measure to protect a website from being loaded in an unauthorized context, such as in a frame on a malicious website.
 	Here's how framebusting works:
 	A website includes a small piece of JavaScript code in its pages.
@@ -183,6 +183,7 @@ OLD SCHOOL DEFENSES [WEAK]
 	SANDBOX ATTRIBUTE= In simple terms, when you use the "sandbox" attribute with an iframe in web development, it's like putting the iframe in a protective bubble to restrict what it can do. One of the things this bubble restricts is the ability to change the top-level web page's location, which means you can't make the whole web page navigate to a different website.
 	However, you have the option to customize this protection. If you add "sandbox='allow-scripts allow-forms'" to the iframe, you're telling the browser that it's allowed to run scripts and use forms inside the iframe. This relaxes some of the restrictions, making the iframe more interactive.
 	But, even with these permissions, you're still preventing the iframe from changing the main web page's location. In other words, the iframe can't make the entire web page navigate to a different website because you've omitted "allow-top-navigation." This is a security measure to ensure that the main web page's location can only be changed by the code outside of the iframe, maintaining control and security over the whole web page.
+
 X-Frame-Options
 	The X-Frame-Options header is a server-side header that controls whether a web page can be displayed inside a frame or iframe. It is used as a security measure to prevent clickjacking attacks, where an attacker tricks a user into clicking on something on a malicious website by overlaying it with a legitimate-looking frame.
 	The X-Frame-Options header must be sent as an HTTP header and cannot be set using an HTML <meta> tag. If it is found in an HTML <meta> tag, the browser will ignore it.
@@ -192,6 +193,7 @@ X-Frame-Options
 	ALLOW-FROM domain: This value allows the page to be displayed inside a frame if the parent document is from the specified domain. For example, if the header is set to ALLOW-FROM https://example.com, the page can be displayed inside a frame on https://example.com but not on any other domain.
 	It's important to note that the ALLOW-FROM value is not widely supported by all browsers, so it's recommended to use the SAMEORIGIN value for broader compatibility.
 	For example, Twitter uses the X-Frame-Options header with the value SAMEORIGIN, which means that its pages can only be displayed inside a frame if the parent document comes from the same origin as Twitter.
+
 SAMESITE COOKIE ATTRIBUTE
 	The samesite cookie attribute is used to prevent clickjacking attacks. When a cookie has the samesite attribute, it will only be sent to a website if it is opened directly, not through a frame or iframe from another site. 
 	This means that if a site like Facebook has the samesite attribute on its authentication cookie, the cookie will not be sent when Facebook is opened in an iframe from another site. This prevents clickjacking attacks from being successful.
@@ -207,19 +209,13 @@ CLICKJACKING SUMMARY
 	Use a covering <div> if we want to allow our pages to be shown in iframes, but still stay safe.To insert a few words of code, use the <code>tag, for several lines – use <pre>, for more than 10 lines – use a sandbox
 
 
-
-
-
-
-
-
 DAY 4:ARRAY BUFFER AND BINARY ARRAYS
 ArrayBuffer
 	In simple terms, an ArrayBuffer in JavaScript is like an empty container that can hold a fixed amount of binary data (zeros and ones). It doesn't store any actual data but provides a space to put binary information. Think of it as an empty box with a specific size where you can later fill in data.
 	In web development, binary data is often encountered when working with files (creating, uploading, downloading) or performing tasks like image processing. JavaScript allows us to handle binary data efficiently, although it might seem a bit confusing due to the various classes involved.
 	The fundamental binary data object in JavaScript is called an "ArrayBuffer." Think of it as a reference to a fixed-size block of memory. 
 	Here's how you create one:
-	 
+
 	This line of code allocates a continuous block of memory with 16 bytes and initializes them to zeros.
 	It's important to note that an ArrayBuffer is not an array like you might be familiar with in JavaScript. It has some key differences:
 	Fixed Length: An ArrayBuffer has a fixed length, and you can't change its size once created.
@@ -232,6 +228,7 @@ ArrayBuffer
 	Float64Array: This view treats every 8 bytes as a floating-point number with a wide range of possible values.
 	So, if you have an ArrayBuffer of 16 bytes, you can choose how to interpret it. You can treat it as 16 separate "tiny numbers," 8 larger numbers (2 bytes each), 4 even larger numbers (4 bytes each), or 2 high-precision floating-point values (8 bytes each).
 	In summary, ArrayBuffer is the core binary data object in JavaScript. It represents raw binary data, and to work with it effectively, you use view objects to interpret and manipulate the data as needed.
+
 TypedArray
 	In simple terms, a TypedArray in JavaScript is like a set of special tools you can use to work with binary data stored in an ArrayBuffer. 
 	These tools help you interpret and manipulate the data in specific ways, treating it as numbers or other data types, making it easier to work with binary information.
@@ -250,10 +247,12 @@ TypedArray
 	Int8Array, Int16Array, Int32Array: For signed integer numbers, which can be negative.
 	Float32Array, Float64Array: For signed floating-point numbers of 32 and 64 bits, respectively.
 	It's important to note that JavaScript doesn't have single-valued types like "int" or "int8" as seen in other programming languages. TypedArrays are not arrays of individual values but views on an underlying ArrayBuffer, which makes them efficient for working with binary data.
+
 Out-of-bounds behaviour
 	out-of-bounds behavior in JavaScript refers to what happens when you try to access an element in an array or collection using an index that doesn't exist within that array or collection.
 	Imagine you have an array with five elements, and you try to access the sixth element by using an index of 5. This is considered an out-of-bounds access because there is no element at that index. 
 	In JavaScript, when you perform such an out-of-bounds access, you typically get an "undefined" result, meaning there is no value at that location in the array.
+
 TypedArray methods
 	TypedArrays in JavaScript behave a lot like regular arrays in many ways. You can use familiar methods like iterate (loop through), map (transform elements), slice (get a portion), find (locate an element), and reduce (aggregate values).
 	However, there are some differences:
@@ -274,6 +273,7 @@ DATAVIEW
 	Typed arrays have a fixed data format determined when you create them (e.g., Uint8Array, Uint16Array). All elements in the array must follow that format.
 	DataView, on the other hand, allows you to choose the data format (like 8-bit or 16-bit) at the time you read the data, using methods like .getUint8(i) or .getUint16(i). This means you can read different parts of the data in various formats within the same ArrayBuffer.
 	So, in summary, DataView is like a flexible reader that can access binary data in any format at any position within an ArrayBuffer, making it highly adaptable for working with diverse data structures.
+
 SUMMARY
 	ArrayBuffer is the core object, a reference to the fixed-length contiguous memory area.
 	To do almost any operation on ArrayBuffer, we need a view.
