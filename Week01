@@ -2,10 +2,9 @@
 JAVASCRIPT INTERMEDIATE:JAVASCRIPT FOUNDATIONS
 WEEK1:WINDOW EVENTS IN JAVASCRIPT
 Day1:26-29September 2023
+
 FRAMES AND WINDOWS:
 	POPUPS AND WINDOWS METHOD:is the oldest method of showing additional documents to the user
-	basically run this:
-	 
 	The above example will open a new window
 	Most browsers open URLs in a new tabs instead of separate windows
 	The initial idea for PopUps was to show additional content without closing  the main window
@@ -13,7 +12,7 @@ FRAMES AND WINDOWS:
 	Its tricky to use PopUps with mobiles devices, wont be able to show simultaneous windows
 	PopUps are still useful in certain tasks such as:Authorization.Where they provide a separate window with its own JavaScript environment  and also popup are easy to open. A popup can navigate(change URL)
 	Most browsers are blocking popups especially if they are called outside user triggered events such asOnClick
-	 
+
 WINDOW.OPEN
 	The syntax for opening a PopUp: window.open(url, name, params)
 	URL= to load  into a new window
@@ -21,44 +20,26 @@ WINDOW.OPEN
 	Params=configuration strings of the new window, contains settings, no spaces in params
 	 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ACCESSING POPUP FROM WINDOW
 	The open call returns a reference to the new window. 
 	It can be used to manipulate its properties, change location and even more.
 	 
 Accessing window from popup
 	The popup may access the opener window as well
-	 
+
 Closing a popup
 	Use win.close= to close a pop up window
 	Win.closed= to double check if the window closed
 	Technically, the close() method is available for any window, but window.close() is ignored by most browsers if window is not created with window.open(). So it’ll only work on a popup.
 	The closed property is true if the window is closed. That’s useful to check if the popup (or the main window) is still open or not. A user can close it anytime, and our code should take that possibility into account.
-	 
+ 
 Scrolling and resizing
 	There are methods to move/resize a window
-	 
-
-
-
-
+ 
 
 
 Scrolling a window
-	Scrolling on a window can be done by pixel whether right or down, using coordinates
-	 
+	Scrolling on a window can be done by pixel whether right or down, using coordinates 
 Focus/Blur on a window
 	Theoretically, there are window.focus() and window.blur() methods to focus/unfocus on a window. And there are also focus/blur events that allow to catch the moment when the visitor focuses on a window and switches elsewhere.
 	When a user attempts to switch out of the window (window.onblur), it brings the window back into focus. The intention is to “lock” the user within the window.
@@ -67,10 +48,6 @@ Focus/Blur on a window
 	For instance:
 	When we open a popup, it might be a good idea to run newWindow.focus() on it. Just in case, for some OS/browser combinations it ensures that the user is in the new window now.
 	If we want to track when a visitor actually uses our web-app, we can track window.onfocus/onblur. That allows us to suspend/resume in-page activities, animations etc. But please note that the blur event means that the visitor switched out from the window, but they still may observe it. The window is in the background, but still may be visible.
-
-
-
-
 
 SUMMARY OF DAY1 
 	Popup windows are used rarely, as there are alternatives: loading and displaying information in-page, or in iframe.
@@ -84,41 +61,24 @@ SUMMARY OF DAY1
 	Methods focus() and blur() allow to focus/unfocus a window. But they don’t work all the time.
 	Events focus and blur allow to track switching in and out of the window. But please note that a window may still be visible even in the background state, after blur.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 DAY2:CROSS-WINDOW COMMUNICATION
 o	The “Same Origin” (same site) policy limits access of windows and frames to each other.
 o	The idea is that if a user has two pages open: one from john-smith.com, and another one is gmail.com, then they wouldn’t want a script from john-smith.com to read our mail from gmail.com. 
 o	So, the purpose of the “Same Origin” policy is to protect users from information theft.
-o	
+
 SAME ORIGIN
-o	Two URLs are said to have the “same origin” if they have the same protocol, domain and port.
-o	 
+o	Two URLs are said to have the “same origin” if they have the same protocol, domain and port. 
 o	JavaScript cross-communication refers to the process of different JavaScript programs or components on a web page exchanging information or messages with each other, even if they are running in separate contexts or iframes. 
 o	This is often necessary when you have multiple parts of a web application that need to work together but are isolated from one another for security or organization reasons.
-
-
 
 IN ACTION:IFRAME
 o	An <iframe> tag  hosts a separate embedded window with its own separate document and window objects
 o	We can access them using properties:
-o	 
+
 o	When accessing something inside the embedded window, browser checks if the iframe is the same origin, if not, then access is denied
 Windows on subdomains: document.domain
 o	By definition,  two URLs with different domains have different origins.
-o	But if windows share the same second-level domain, for instance john.site.com, peter.site.com and site.com (so that their common second-level domain is site.com), we can make the browser ignore that difference, so that they can be treated as coming from the “same origin” for the purposes of cross-window communication.
-o	 
+o	But if windows share the same second-level domain, for instance john.site.com, peter.site.com and site.com (so that their common second-level domain is site.com), we can make the browser ignore that difference, so that they can be treated as coming from the “same origin” for the purposes of cross-window communication. 
 o	URLs and Origins: Every website you visit on the internet has a unique web address called a URL. For example, "site.com" and "john.site.com" are two different web addresses.
 o	Same Origin: Normally, web browsers treat web pages from different web addresses as if they come from different places. This is a security measure to prevent one web page from messing with or stealing data from another web page that you have open in your browser.
 o	Sharing Data: Sometimes, we want web pages from different web addresses to be able to share information or work together. To do this, we need to tell the browser that even though these pages have different addresses, they should be treated as if they're from the same place (same origin).
