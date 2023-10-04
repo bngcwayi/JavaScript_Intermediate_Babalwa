@@ -1,1 +1,181 @@
 WEEk02_Files, Patterns and Flags
+JAVASCRIPT_INTERMEDIATE_Week02_02-06Oct23
+WEEK02:FILES, PATTERNS AND FLAGS
+
+DAY 3:FETCH:CROSS-ORIGIN REQUESTS
+	Cross-origin requests in JavaScript refer to the process of making HTTP requests from one domain (origin) to another domain.
+	In web development, an origin is defined by the combination of the protocol (e.g., HTTP, HTTPS), domain (e.g., example.com), and port (e.g., :80, :443) from which a web page is served. 
+	When a JavaScript code running on a web page tries to make a request to a different origin, it's considered a cross-origin request.
+	Cross-origin requests= are subject to security restrictions enforced by web browsers to prevent potential security vulnerabilities
+	These restrictions are part of the Same-Origin Policy (SOP) which dictates that a web page can only make requests to the same origin from which it was loaded, unless certain conditions are met.
+	Cross-origin requests refer to requests that are sent from one domain (or subdomain) to another domain, protocol, or port. These requests require special headers to be included in the request and response in order to comply with the Cross-Origin Resource Sharing (CORS) policy.
+	The CORS policy is a security mechanism enforced by web browsers to prevent malicious scripts from making unauthorized requests to different domains. 
+	The same-origin policy restricts scripts loaded from one domain from accessing resources from another domain. 
+	CORS allows servers to explicitly specify which domains are allowed to make cross-origin requests and what types of requests are permitted.
+	When a cross-origin request is made, the browser automatically includes an Origin header in the request, indicating the domain from which the request originated. The server then determines whether to allow the request based on the Access-Control-Allow-Origin header in the response. If the server allows the request, it includes the Access-Control-Allow-Origin header with a value that matches the requesting domain or a wildcard (*) to allow requests from any domain.
+	By enforcing the CORS policy, web browsers ensure that cross-origin requests are only allowed when explicitly permitted by the server, helping to prevent unauthorized access to sensitive resources and protect against potential security vulnerabilities.
+	To sum it up, cross-origin requests in JavaScript can be allowed by using the CORS mechanism if the server is configured to permit them. Otherwise, the browser will block the requests due to security concerns. Developers need to be aware of these restrictions and configure their servers and client-side code accordingly to enable safe cross-origin communication.
+
+USING FORMS
+	Forms and cross-origin requests in JavaScript are related in the sense that both can lead to cross-origin interactions on a web page,
+	When a form is submitted, the browser sends an HTTP POST or GET request to the server specified in the form's action attribute.
+	Cross-origin issues with forms typically arise when you attempt to submit a form to a different origin (domain) than the one from which the web page originated. This is considered a cross-origin request.
+	To handle cross-origin form submissions, the server must include appropriate CORS headers in its response to allow the request. Specifically, the Access-Control-Allow-Origin header must be set to the origin of the web page that is submitting the form.
+	Without proper CORS configuration on the server, the browser will block the form submission, and JavaScript code on the web page won't be able to access the server's response. 
+SIMPLE REQUEST
+	There are two types of cross-origin  requests: Simple request and other requests
+	JavaScript Simple Requests, also known as Simple Cross-Origin Requests, refer to a category of HTTP requests made from a web page using JavaScript that do not trigger a preflight CORS (Cross-Origin Resource Sharing) check. 
+	These requests are considered "simple" because they meet certain criteria that make them less likely to pose a security risk. 
+	They are primarily used for common operations like fetching resources or sending simple data to a different origin (domain) from the one where the web page is hosted.
+	To be classified as a Simple Request, the following conditions must be met:
+	HTTP Methods: The request must use one of the following HTTP methods:
+	GET
+	HEAD
+	POST
+	Content Types: If the request is a POST request, the Content-Type header in the request must be one of the following:
+	application/x-www-form-urlencoded
+	multipart/form-data
+	text/plain
+	Custom Headers: The request can only include a limited set of headers. Custom headers (headers other than the simple headers listed below) are not allowed in a simple request:
+	Accept
+	Accept-Language
+	Content-Language
+	Content-Type (only if it's one of the allowed content types listed above)
+	DPR (Device Pixel Ratio)
+	Downlink
+	Save-Data
+	Viewport-Width
+	Width
+	The essential difference is that a “simple request” can be made with a <form> or a <script>, without any special methods.
+CORS for Simple Requests
+	In simple terms, CORS (Cross-Origin Resource Sharing) for Simple Requests is a security mechanism that allows web pages in one place to safely request and use data from another place on the internet, as long as certain conditions are met.
+	Imagine you have a web page on one website (e.g., yoursite.com), and you want to use JavaScript to fetch some information from a different website (e.g., another-site.com). Here's how CORS works for Simple Requests:
+	Conditions: The web browser checks if your request meets some specific conditions to be considered a "simple request." These conditions include using common methods like GET or POST, sending certain types of data, and using only allowed headers.
+	Request: If your request qualifies as a Simple Request, the browser sends your request directly to the other website.
+	Response: The other website can include special permission headers in its response to your request. The most important one is Access-Control-Allow-Origin, which says whether your website is allowed to access the data. If the other website trusts your website, it sets this header to your domain (e.g., Access-Control-Allow-Origin: yoursite.com).
+	Usage: If the permission headers are set correctly, your JavaScript code on your website can now use the data received from the other website.
+	So, CORS for Simple Requests is like a permission system that allows websites to ask for and share data in a safe and controlled way. If the conditions are met and the other website trusts your website, your request is allowed, and you can use the data as needed.
+	
+	 
+Response Headers
+	When JavaScript on a web page makes a request to a different website (a cross-origin request), there are certain response headers from that website that JavaScript is allowed to access by default. These headers are called "simple response headers," and they include things like:
+	Cache-Control
+	Content-Language
+	Content-Type
+	Expires
+	Last-Modified
+	Pragma
+	However, there's one important header missing from this list, which is the "Content-Length" header. The "Content-Length" header tells you the size of the response in bytes, which can be useful if you want to track the progress of downloading something.
+	If you want JavaScript to be able to access any other response header (besides the simple ones), the server hosting the website must explicitly allow it. This permission is granted by the server using a special response header called "Access-Control-Expose-Headers."
+	In simple terms, it means that if you want to use JavaScript to access specific information in the response from another website, like custom headers or the response size, the server of that website needs to say it's okay by including those headers in the "Access-Control-Expose-Headers" header of the response it sends back to your web page. This way, JavaScript can access and use that information as needed.
+	 
+	
+Non-simple Requests
+	JavaScript Non-simple Requests, also known as Cross-Origin Non-Simple Requests, are a category of HTTP requests made by JavaScript running in a web page that interact with resources (such as APIs or data) on a different domain (origin) than the one the web page came from. 
+	These requests are called "non-simple" because they go beyond the basic, safe, and simple requests that are typically permitted without any special configuration.
+	Here are the key characteristics and considerations for JavaScript Non-simple Requests:
+	Non-Simple Requests vs. Simple Requests: Simple requests are basic HTTP requests like GET or POST that do not trigger additional security checks when made across different origins. However, non-simple requests involve more complex operations or additional HTTP headers that require permission from the server on the target domain.
+	Additional Headers: Non-simple requests often include custom HTTP headers or use request methods other than GET or POST, such as PUT, DELETE, or PATCH.
+	Cross-Origin Resource Sharing (CORS): To make non-simple requests work securely, the target server must implement Cross-Origin Resource Sharing (CORS). CORS is a mechanism that allows servers to specify which origins are allowed to access their resources and what types of requests are permitted. This helps prevent security risks associated with cross-origin requests.
+	Preflight Requests: Some non-simple requests require a preliminary HTTP request called a "preflight" request. This preflight request uses the HTTP OPTIONS method to check with the target server whether the actual request should be permitted. The server responds to the preflight request with CORS headers specifying what is allowed.
+	Access-Control-Allow-Origin Header: The primary CORS header is "Access-Control-Allow-Origin," which indicates which origins are permitted to access the server's resources. The server can specify a specific origin or use a wildcard "*" to allow any origin (although this is less secure).
+	Access-Control-Allow-Methods and Access-Control-Allow-Headers: These headers specify which HTTP methods and custom headers are permitted for non-simple requests.
+	Access-Control-Expose-Headers: If a non-simple request includes custom response headers, the server should use this header to specify which headers can be exposed to the JavaScript code on the requesting page.
+	In summary, JavaScript Non-simple Requests are more complex HTTP requests made by JavaScript code in a web page to access resources on a different domain. These requests require additional server-side configuration and adherence to CORS rules to ensure security and prevent unauthorized access. CORS headers, such as "Access-Control-Allow-Origin," are used to define which origins and request methods are permitted, making it possible for web applications to safely interact with cross-origin resources.
+Credentials
+	By default, when a request is made from one website (or origin) to another using JavaScript, it doesn't include any user credentials like cookies or HTTP authentication. 
+	This is different from regular HTTP requests, which usually bring along all the cookies associated with the domain they are sent to. So, when you make a cross-domain request using JavaScript, it doesn't automatically send any cookies, even if they belong to the target domain.
+	Why is this the case? Well, it's a security measure. Sending requests with credentials like cookies can be very powerful because it allows JavaScript to potentially access sensitive user information on behalf of the user. So, to ensure safety and privacy, cross-domain requests from JavaScript are restricted by default.
+	If a website wants to trust and allow requests from a different origin that come with credentials (like cookies), it must explicitly indicate this trust by including an additional HTTP header called "Access-Control-Allow-Credentials: true" in its response. This tells the browser that it's okay to include credentials when making requests to that domain from a different origin.
+	To actually send credentials with your JavaScript request, you need to specify the "credentials" option as "include" in your fetch request, like this:
+	 
+Fetch API
+
+	referrer and referrerPolicy:
+	The "referrer" and "referrerPolicy" options control how Fetch sets the HTTP Referer header.
+	The Referer header usually contains the URL of the page that made the request.
+	"referrer" allows you to set the Referer to a specific URL within the same origin or disable it entirely.
+	"referrerPolicy" sets general rules for the Referer header, like when it should be sent, shortened, or completely omitted.
+	mode:
+	The "mode" option determines how Fetch handles cross-origin requests:
+	"cors" (default) allows cross-origin requests as described in Cross-Origin Requests.
+	"same-origin" restricts requests to the same origin.
+	"no-cors" allows only simple cross-origin requests.
+
+
+	Credentials:
+	The "credentials" option controls whether Fetch sends cookies and authorization headers with the request.
+	"same-origin" (default) sends credentials for same-origin requests.
+	"include" sends credentials for cross-origin requests but requires approval from the cross-origin server.
+	"omit" never sends credentials, even for same-origin requests.
+	cache:
+	The "cache" options modify how Fetch handles HTTP caching:
+	"default" follows standard HTTP caching rules and headers.
+	"no-store" ignores HTTP caching and becomes the default if certain headers are set.
+	"reload" ignores the cache and updates it.
+	"no-cache" uses conditional requests if there's a cached response, otherwise, it makes a regular request.
+	"force-cache" uses cached responses even if they're stale.
+	"only-if-cached" uses cached responses, failing if none are available (works only for "same-origin" mode).
+	redirect:
+	The "redirect" option controls how Fetch handles HTTP redirects:
+	"follow" (default) automatically follows redirects.
+	"error" generates an error in case of a redirect.
+	"manual" doesn't follow redirects but provides information for manual handling.
+	integrity:
+	The "integrity" option allows you to verify that the response matches a known checksum.
+	This is useful for ensuring data integrity when downloading files, for example.
+	keepalive:
+	The "keepalive" option indicates that the request may continue even after the page is unloaded.
+	This is useful for tasks like sending statistics or data to the server when the user leaves a page.
+	There's a size limit for keepalive requests (64kb), and responses aren't received when the request is made onunload.
+	 
+	In simple terms, these options and concepts provide fine-grained control over how Fetch interacts with servers and handles various aspects of network requests, such as caching, credentials, and redirects. They help developers make requests more efficient, secure, and tailored to specific requirements.
+
+DAY 1:FILE OBJECTS
+o	A FileReader is like a tool in JavaScript that helps you read data from files or blobs (collections of binary data).
+o	It can read data in different formats, such as text or binary data, depending on what you need.
+o	As it reads the data, it triggers events like "load" when it's successful or "error" if there's a problem.
+o	Once it's done reading, you can access the result using reader.result for successful reads or reader.error for errors.
+o	Fetch:
+o	Fetch is a JavaScript feature that allows you to talk to a server and get information from it without reloading your web page. This is super useful for things like sending orders, getting user info, or getting updates from a server.
+o	When you use fetch, you give it a URL and some optional settings like what kind of request (method) to make and additional information (headers).
+o	Fetch starts the request right away and gives you a promise. It resolves with a "Response" object when the server responds with headers.
+o	At this point, you can check things like the HTTP status and headers, but you don't have the actual response data yet.
+o	If something goes wrong, like the server can't be reached or there's an HTTP error, the promise will be rejected. This is normal and can be handled.
+o	In simple terms, FileReader helps you read data from files, Fetch helps you talk to servers to get data, and a "POST request" is a specific type of request you can make with Fetch when you want to send data to a server, like submitting a form or sending JSON data.
+
+DAY 2:FORM DATA
+	The "FormData" object is like a handy tool in web development that helps you work with HTML forms and send their data to a server.
+	Here's how it works in simple terms:
+	Imagine you have a web page with a form, like a login form or a contact form. "FormData" can be used to capture and manage all the information entered into that form.
+	It's like a container that holds all the form fields and their values, making it easy to access and work with them in your JavaScript code.
+	One cool thing about "FormData" is that you can use it to send this form data to a server. When you do this, it's sent in a format that the server can understand, and it looks like a regular form submission.
+	You can create a "FormData" object by either automatically capturing a form's fields by providing the HTML form element as an argument, or you can manually build it by adding fields using methods like "append" and "set." You can also edit or remove fields using methods like "delete," "get," and "has."
+	If your form includes file uploads, like when you want to send an image or a file, "FormData" has got you covered. It automatically handles these file inputs as part of the form, allowing you to send files to the server seamlessly.
+	In simple terms, "FormData" makes it easy to work with form data in JavaScript and send it to a server, whether it's just text fields or includes file uploads.
+
+
+DAY 4:PATTERNS AND FLAGS
+	Regular expressions (regex) are like special codes used for powerful text searches and manipulations in JavaScript:
+	A regex consists of two parts: the "pattern" and "flags."
+	The pattern is what you're looking for in a string, like specific words or characters.
+	Flags are special instructions that modify how the pattern is matched.
+	You can create a regex using either a "long syntax" or a "short syntax" with slashes, like /pattern/.
+	The "FormData" object helps handle form data in web development.
+	It can capture and manage form fields easily.
+	You can use it to send form data to a server, making it look like a regular form submission.
+	It works well with file uploads in forms.
+	In regular expressions, you can use special characters like \d (for digits) and \s (for spaces).
+	You can use flags like "i" for case-insensitivity or "g" to find all matches.
+	Dot (.) matches any character except a newline.
+	To match a dot literally, escape it as .
+	Parentheses () are also special; escape them as 
+	and.
+	A backslash itself needs to be escaped as \.
+	"s" flag makes dot match any character, including newlines.
+	To match a slash literally, escape it as /.
+	When creating a regex with "new RegExp," you might need to double-escape backslashes.
+	In summary, regular expressions are powerful tools for searching and manipulating text, but you need to use special characters and flags correctly, and sometimes you must escape characters to match them literally.
+
+
+
