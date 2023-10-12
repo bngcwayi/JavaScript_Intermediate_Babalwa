@@ -1,1 +1,77 @@
+JAVASCRIPT_INTERMEDIATE_Week03_09-13Oct23
+WEEK03:INTRO TO NODE JS
+DAY 1:09/October_2023:intro to Node
+
+•	Node.js is a runtime environment that allows you to run JavaScript code on the server-side, outside of a web browser. In simple terms, it's a technology that lets developers use JavaScript to build server applications.
+Node.js is used for various purposes, including:
+•	Building web servers: Node.js can be used to create fast and scalable web servers. Developers can handle incoming web requests, process data, and serve web pages or APIs using JavaScript.
+•	Building real-time applications: It's well-suited for building real-time applications like chat applications, online games, and collaborative tools because it supports asynchronous programming, enabling efficient handling of multiple concurrent connections.
+•	Building command-line tools: Node.js is great for creating command-line tools and scripts, making it a versatile choice for automating tasks and managing server-side processes.
+•	Building backend services: Many web and mobile applications use Node.js as the backend to handle data storage, authentication, and business logic.
+•	Running JavaScript on the server: Node.js allows developers to use a single language (JavaScript) for both client-side and server-side development, which can streamline development and maintenance.
+•	In essence, Node.js is a runtime that empowers developers to use JavaScript for server-side programming, making it a valuable tool for building a wide range of applications and services.
+What Can Node.js Do?
+•	Node.js can generate dynamic page content
+•	Node.js can create, open, read, write, delete, and close files on the server
+•	Node.js can collect form data
+•	Node.js can add, delete, modify data in your database
+What is a Node.js File?
+•	Node.js files contain tasks that will be executed on certain events
+•	A typical event is someone trying to access a port on the server
+•	Node.js files must be initiated on the server before having any effect
+•	Node.js files have extension ".js"
+What is a Module in Node.js?
+•	Consider modules to be the same as JavaScript libraries.
+•	A set of functions you want to include in your application.
+Built-in Modules
+•	Node.js has a set of built-in modules which you can use without any further installation.
+•	Include Modules
+•	To include a module, use the require() function with the name of the module
+
+DAY 2:NODE JS LIBRARIES
+	Node.js libraries, also known as "npm packages," are ready-made blocks of code that enhance Node.js functionality. 
+	They're stored in a central place called the npm registry. Developers can easily get and use these libraries in their Node.js projects, which helps them save time and effort.
+Here are the main points about Node.js libraries:
+	Ready-Made Code: Node.js libraries are pre-written code pieces that solve common coding problems. Developers use them to add specific features to their apps instead of writing everything from scratch.
+	Modular Approach: Node.js encourages dividing code into smaller parts. Libraries help keep code organized and manageable, especially in large projects.
+	Handling Dependencies: Libraries often rely on other libraries. Node Package Manager (npm) handles these connections automatically when you install a library, ensuring everything works together.
+	Version Control: npm packages have version numbers to ensure consistency and prevent issues with compatibility between different parts of the code.
+	Community Collaboration: A large community contributes to these libraries, creating a wide variety of open-source tools for different tasks.
+	Documentation: Good libraries come with guides that explain how to use them, making it easier for developers to include them in their projects.
+	Customization: Developers can adapt and configure npm packages to match their specific project requirements.
+	Popular Node.js libraries include Express.js (for web development), lodash (for utility functions), Mongoose (for MongoDB interaction), and Axios (for HTTP requests). Developers use npm to find, install, and manage these libraries, saving time and effort in their coding work.
+NPM is a package manager for Node.js packages, or modules if you like.
+	The NPM program is installed on your computer when you install Node.js
+What is a Package?
+	A package in Node.js contains all the files you need for a module.
+	Modules are JavaScript libraries you can include in your project.
+	npm is the default package manager for Node.js. It is a command-line tool that allows you to discover, install, manage, and share JavaScript libraries and packages (also known as modules) with ease.
+	npm provides a vast and diverse ecosystem of reusable code modules that can be easily integrated into your Node.js applications. These modules cover a wide range of functionality, including web frameworks, database connectors, utility functions, and more.
+	You can install third-party packages and manage your application's dependencies by creating a package.json file. This file lists all the packages your project depends on, and npm handles the installation and version management of these packages.
+	Here are some common npm commands:
+	npm install package-name: Installs a package and adds it to your project's dependencies.
+	npm init: Initializes a new Node.js project and creates a package.json file.
+	npm install: Installs all the dependencies listed in the package.json file.
+	npm start: Runs your application using the script defined in the package.json.
+	npm search package-name: Searches for packages on the npm registry.
+	npm publish: Publishes your package to the npm registry (if you are a package author).
+	Together, Node.js and npm have revolutionized JavaScript development by making it possible to create a wide range of applications, from web servers to desktop applications and even IoT devices, using the same programming language and a rich ecosystem of reusable modules.
+
+DAY 3 CLIENT SIDE GAME DEVELOPMENT
+	Sprite= a "sprite" typically refers to a sprite image or a sprite sheet used in web development to optimize the loading and rendering of multiple images. 
+	Sprites are commonly used to create animations, icons, and other graphical elements on websites.
+	Using image sprites will reduce the number of server requests and save bandwidth
+	Sprites are commonly used to create animations or to display images. These images are often used for games, user interfaces, and other interactive elements on a web page. JavaScript can be used to work with sprites in various ways. Here's an overview of how you can work with sprites in JavaScript:
+	Sprite Image Creation:
+	You typically create a sprite by combining multiple images into a single image file or sprite sheet. Each image within the sprite sheet represents a frame of an animation or an element in your interface.
+	CSS Sprites:
+	One common way to work with sprites is using CSS background images. You can set the background image of an HTML element to the sprite sheet and use CSS to control which part of the sprite sheet is displayed. This is often used for creating buttons and icons.
+	Animating Sprites:
+	For sprite animations, JavaScript is used to change the background position of the sprite sheet at a specific rate to create the illusion of motion. This can be done using the requestAnimationFrame function to update the sprite's position and display.
+	HTML5 Canvas:
+	You can create and animate sprites using the HTML5 <canvas> element and JavaScript. The canvas API provides powerful features for drawing and animating graphics. You can draw images from a sprite sheet onto the canvas and update their positions over time.
+
+
+
+
 
