@@ -1,1 +1,36 @@
+JAVASCRIPT_INTERMEDIATE_Week04_16-20_Oct23
+WEEK03:BUILDING APP COMPONENTS
+DAY 1:16/October_2023:Installing and Building App Components
+
+WHAT IS REACT NATIVE?
+	React Native= is a JavaScript  open source  framework for building mobile apps
+	Has built-in components, libraries,
+
+DAY 2:BUILDING THE INDEX PAGE
+	We have to create an index page
+	Next.js requires that you create the page components of your app in a pages directory. 
+	We will go ahead and create a pages directory in our app root directory and create a new index.js file inside it for the index page of our application.
+	In React Native, an "index page" is typically the first screen that users see when they launch your mobile application
+
+DAY 3:BUILDING CHAT COMPONENT
+•	Building a chat component in React Native entails creating a user interface for real-time messaging between users. To do this, you'll need to consider several key components and features.
+•	Here's an overview of the steps and considerations:
+•	Setting up a React Native Project:If you haven't already, set up a React Native project using tools like Expo or the React Native CLI.
+•	Design the User Interface:Create a user interface that includes a chat interface with message bubbles, user avatars, and a message input box.
+•	Data Storage:Determine how and where you'll store chat messages. Common options include using a backend server, a third-party chat API, or local storage (not recommended for production).
+•	Real-Time Messaging:Implement real-time messaging using a WebSocket library like Socket.IO or Firebase Realtime Database. This enables instant message delivery.
+•	Authentication:Implement user authentication to ensure that only authorized users can send and receive messages.
+•	User List:Display a list of users who are available for chat, and implement a way to select a user to start a conversation.
+•	Sending and Receiving Messages:Implement functions to send and receive messages. Messages can include text, images, or other multimedia elements.
+•	Message Display:Display messages in a conversation thread, organizing them by sender and timestamp. You may want to include features like message status (read, delivered) and the ability to display "typing" indicators
+•	Notifications:Implement push notifications to alert users when they receive new messages, even when the app is not actively open.
+•	Message Input:Create an input field for users to compose and send messages. This may include features like sending images or emojis.
+
+DAY 4:DISPLAYING THE CHAT MESSAGE
+	This sections looks at ways of displaying messages
+	The ChatMessage component is a very simple component requiring two props:
+	Message for the chat message and position for the positioning of the message - either right or left. This is useful for positioning the messages of the active user on one side
+	Messages of other users on the other side as we would do in a moment.
+
+
 
